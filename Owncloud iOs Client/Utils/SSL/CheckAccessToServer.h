@@ -25,7 +25,7 @@
 @end
 
 @interface CheckAccessToServer : NSObject <UIAlertViewDelegate, NSURLConnectionDataDelegate> {
-    __weak id<CheckAccessToServerDelegate> _delegate;
+     id<CheckAccessToServerDelegate> _delegate;
 }
 
 
@@ -36,7 +36,7 @@
 - (void)saveCertificate:(SecTrustRef) trust withName:(NSString *) certName;
 
 
-@property (nonatomic, weak) __weak id<CheckAccessToServerDelegate> delegate;
+@property (nonatomic, strong)  id<CheckAccessToServerDelegate> delegate;
 @property (nonatomic, strong) NSString *urlStatusCheck;
 @property (nonatomic, strong) UIViewController *viewControllerToShow;
 @property (nonatomic, strong) NSString *urlUserToCheck;

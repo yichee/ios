@@ -59,7 +59,7 @@ static SecCertificateRef SecTrustGetLeafCertificate(SecTrustRef trust)
 
 -(NSString *) getConnectionToTheServerByUrlAndCheckTheVersion:(NSString *)url {
     
-    NSString *version = [[[NSString alloc] init] autorelease];
+    NSString *version = [[NSString alloc] init];
     
     _urlStatusCheck = [NSString stringWithFormat:@"%@status.php", url];
     
@@ -113,7 +113,6 @@ static SecCertificateRef SecTrustGetLeafCertificate(SecTrustRef trust)
     
     NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     
-    [connection release];
 }
 
 -(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
@@ -146,7 +145,6 @@ static SecCertificateRef SecTrustGetLeafCertificate(SecTrustRef trust)
             
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"invalid_ssl_cert", nil) delegate: self cancelButtonTitle:NSLocalizedString(@"no", nil) otherButtonTitles:NSLocalizedString(@"yes", nil), nil];
             [alert show];
-            [alert release];
             
             #else
             
@@ -337,7 +335,6 @@ static SecCertificateRef SecTrustGetLeafCertificate(SecTrustRef trust)
     } else {
         [ManageAppSettingsDB insertCertificate:[NSString stringWithFormat:@"%f.der", [date timeIntervalSince1970]]];
     }
-    [fm release];
     
     [self.delegate repeatTheCheckToTheServer];
 }
